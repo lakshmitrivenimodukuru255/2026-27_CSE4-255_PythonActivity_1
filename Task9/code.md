@@ -79,15 +79,14 @@ Sample Output:
 ## Flowchart
 ```mermaid
 graph TD
-    Start([Start]) --> Init[locations = ['Location 1', 'Location 2'], target_stock = 100]
+    Start([Start])--> Init[Initialize locations & target_stock = 100]
     Init --> Loop{For each location}
-    
-    Loop --> Input[Input received, distributed, damaged, actual_remaining]
-    Input --> Calc[expected = received - distributed - damaged<br/>discrepancy = expected - actual<br/>replenishment = target - actual if actual < target else 0]
-    Calc --> Print[Print expected, discrepancy, and replenishment]
-    
-    Print --> CheckMore{More locations?}
-    CheckMore -- Yes --> Loop
-    CheckMore -- No --> End([End])
+    Loop -- "Next Location" --> Input[Input received, distributed,<br/>damaged, actual_remaining]
+    Input --> Calc1[expected_remaining = received - distributed - damaged]
+    Calc1 --> Calc2[discrepancy = expected_remaining - actual_remaining]
+    Calc2 --> Calc3[replenishment = target_stock - actual_remaining if actual < target else 0]
+    Calc3 --> Print[Print expected, discrepancy,<br/>and replenishment needed]
+    Print --> Loop
+    Loop -- "All Locations Processed" --> End([End])
 ```
 
