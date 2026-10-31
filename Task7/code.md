@@ -96,24 +96,20 @@ Sample output:
 Current Balance: ₹5000
 
 ## Flowchart
-```mermaid
+``` mermaid
 graph TD
     A[Start: Initialize balance = 5000] --> B[Input PIN]
     B --> C{PIN == "1234"?}
     C -- No --> D[Print Error: Incorrect PIN] --> E[End]
     C -- Yes --> F[Display ATM Menu & Input choice]
-    
     F --> G{choice == "1"?}
     G -- Yes --> H[Print Current Balance] --> E
     G -- No --> I{choice == "2"?}
-    
     I -- Yes --> J[Input Deposit Amount & Add to Balance] --> K[Print New Balance] --> E
     I -- No --> L{choice == "3"?}
-    
     L -- Yes --> M[Input Withdrawal Amount]
     M --> N{Amount <= Balance?}
     N -- Yes --> O[Deduct Amount & Print Remaining Balance] --> E
     N -- No --> P[Print Error: Insufficient Balance] --> E
-    
     L -- No --> Q[Print Error: Invalid Option Selected] --> E
 ```
