@@ -98,36 +98,31 @@ Current Balance: ₹5000
 ## Flowchart
 ``` mermaid
 graph TD
-    A[Start] --> B[balance = 5000]
+    Start([Start]) --> B[balance = 5000]
     B --> C[Input PIN]
-    C --> D{pin == "1234"?}
+    C --> D{pin == 1234?}
     
-    D -- No --> E[Print Error: Incorrect PIN]
-    E --> Z[End]
+    D -- No --> E[Incorrect PIN]
+    D -- Yes --> F[Show Menu & Input Choice]
     
-    D -- Yes --> F[Display Menu & Input choice]
+    F --> G{Choice 1?}
+    G -- Yes --> H[Print Balance]
     
-    F --> G{choice == "1"?}
-    G -- Yes --> H[Print Current Balance]
-    H --> Z
+    G -- No --> I{Choice 2?}
+    I -- Yes --> J[Deposit & Print New Balance]
     
-    G -- No --> I{choice == "2"?}
-    I -- Yes --> J[Input deposit amount]
-    J --> K[balance += amount]
-    K --> L[Print New Balance]
-    L --> Z
+    I -- No --> M{Choice 3?}
+    M -- Yes --> N[Input Withdrawal Amount]
+    N --> O{Amount <= Balance?}
+    O -- Yes --> P[Deduct & Print Remaining Balance]
+    O -- No --> Q[Insufficient Balance Error]
     
-    I -- No --> M{choice == "3"?}
-    M -- Yes --> N[Input withdrawal amount]
-    N --> O{amount <= balance?}
+    M -- No --> S[Invalid Option Error]
     
-    O -- Yes --> P[balance -= amount]
-    P --> Q[Print Remaining Balance]
-    Q --> Z
-    
-    O -- No --> R[Print Error: Insufficient balance!]
-    R --> Z
-    
-    M -- No --> S[Print Error: Invalid option selected.]
-    S --> Z
+    E --> End([End])
+    H --> End
+    J --> End
+    P --> End
+    Q --> End
+    S --> End
 ```
