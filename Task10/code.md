@@ -72,12 +72,12 @@ Unallocated Demand: 1
 ## Flowchart 
 ```mermaid
 graph TD
-    Start([Start]) --> Init[room_capacity = 2, room_occupants = [], assigned_ids = set(), unallocated = 0]
+    Start([Start]) --> Init[room_capacity = 2<br/>room_occupants = []<br/>assigned_ids = set()<br/>unallocated = 0]
     Init --> Loop{For each student (id, name)}
     Loop -- "Next Student" --> CheckDup{id in assigned_ids?}
-    CheckDup -- Yes --> PrintDup[Print: Duplicate student warning] --> Loop
+    CheckDup -- Yes --> PrintDup[Print: Duplicate warning] --> Loop
     CheckDup -- No --> CheckCap{len(room_occupants) < room_capacity?}
-    CheckCap -- Yes --> Alloc[Append name to room_occupants<br/>Add id to assigned_ids<br/>Print: Allocated successfully] --> Loop
+    CheckCap -- Yes --> Alloc[Append name to room_occupants<br/>Add id to assigned_ids<br/>Print success] --> Loop
     CheckCap -- No --> Full[Print: Room is full!<br/>unallocated += 1] --> Loop
     Loop -- "All Students Processed" --> PrintSummary[Print Room Occupants & Unallocated Demand]
     PrintSummary --> End([End])
